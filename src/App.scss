@@ -1,0 +1,44 @@
+@import "./index.scss";
+
+.App {
+  @include flexbox(column, center, center);
+}
+
+.block {
+  @include flexbox(column, center, center);
+  width: 200px;
+  height: 400px;
+
+  .flag {
+    @include flexbox(column, center, center);
+
+    .flag-color {
+      width: 150px;
+      height: 40px;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+  }
+
+  .control {
+    @include flexbox(column, center, center);
+    margin-top: 50px;
+
+    div {
+      @include flexbox(column, center, center);
+      border-radius: 15px;
+      background-color: $dimed;
+      margin: 15px;
+
+      p {
+        margin: 10px;
+      }
+    }
+  }
+}

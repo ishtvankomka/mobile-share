@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+$white: #ffffff;
+$grey: #b2b2b2;
+$black: #191414;
+$green: #1DB954;
+$red: #C40233;
+$dark-green: #5c8444;
+$dimed: #333333;
+$yellow: #FFBF00;
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Figtree', sans-serif;
+  background-color: $black;
+  color: $white;
+  user-select: none;
+  min-height: 100vh;
+}
+
+@mixin flexbox($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
