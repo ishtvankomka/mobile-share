@@ -42,6 +42,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        alert(err)
       })
   }
 
@@ -67,6 +68,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        alert(err)
       })
   }
 
@@ -88,6 +90,7 @@ function App() {
       await navigator.share(data);
     } catch (err) {
       console.error(err.name, err.message);
+      alert(err)
     }
   };
 
