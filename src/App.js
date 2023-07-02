@@ -1,4 +1,4 @@
-import { React, useRef } from 'react';
+import { React, useEffect, useRef, useState } from 'react';
 import './App.scss';
 import { toPng } from 'html-to-image';
 
@@ -58,6 +58,19 @@ function App() {
     );
   }
 
+  const [file, setFile] = useState(null)
+  useEffect(() => {
+    if (file)
+      console.log('file: ', file)
+  }, [file])
+  useEffect(() => {
+    toPng(shareRef.current, { cacheBust: false })
+      .then((dataUrl) => {
+        console.log('share dataUrl: ', dataUrl)
+        setFile(urltoFile(dataUrl, 'test', 'image/png'))
+      })
+  }, [])
+
   const handleOnShare2 = () => {
     toPng(shareRef.current, { cacheBust: false })
       .then((dataUrl) => {
@@ -91,9 +104,6 @@ function App() {
       text: text,
     };
     try {
-      if (!(navigator.canShare(data))) {
-        throw new Error("Can't share data.", data);
-      }
       await navigator.share(data);
     } catch (err) {
       console.error(err.name, err.message);
@@ -105,6 +115,23 @@ function App() {
     share('title', 'text', blob)
   }
 
+  const share2 = async (title, text, file) => {
+    const data = {
+      files: [file],
+      title: title,
+      text: text,
+    };
+    try {
+      await navigator.share(data);
+    } catch (err) {
+      console.error(err.name, err.message);
+      alert(err)
+    }
+  };
+
+  const handleOnShare4 = () => {
+    share2('title', 'text', file)
+  }
 
   return (
     <div className="App">
@@ -129,6 +156,9 @@ function App() {
           </div>
           <div onClick={() => { handleOnShare3() }}>
             <p>Share 3</p>
+          </div>
+          <div onClick={() => { handleOnShare4() }}>
+            <p>Share 4</p>
           </div>
         </div>
       </div>
