@@ -64,12 +64,13 @@ function App() {
       console.log('file: ', file)
   }, [file])
   useEffect(() => {
-    toPng(shareRef.current, { cacheBust: false })
-      .then((dataUrl) => {
-        console.log('share dataUrl: ', dataUrl)
-        setFile(urltoFile(dataUrl, 'test', 'image/png'))
-      })
-  }, [])
+    if (shareRef)
+      toPng(shareRef.current, { cacheBust: false })
+        .then((dataUrl) => {
+          console.log('share dataUrl: ', dataUrl)
+          setFile(urltoFile(dataUrl, 'test', 'image/png'))
+        })
+  }, [shareRef])
 
   const handleOnShare2 = () => {
     toPng(shareRef.current, { cacheBust: false })
