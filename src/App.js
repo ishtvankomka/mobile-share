@@ -70,6 +70,32 @@ function App() {
       })
   }
 
+  const blob = fetch('https://cdn.glitch.com/f96f78ec-d35d-447b-acf4-86f2b3658491%2Fchuck.png?v=1618311092497').then(r => r.blob())
+  const share = async (title, text, blob) => {
+    const data = {
+      files: [
+        new File([blob], 'file.png', {
+          type: blob.type,
+        }),
+      ],
+      title: title,
+      text: text,
+    };
+    try {
+      if (!(navigator.canShare(data))) {
+        throw new Error("Can't share data.", data);
+      }
+      await navigator.share(data);
+    } catch (err) {
+      console.error(err.name, err.message);
+    }
+  };
+
+  const handleOnShare3 = () => {
+    share('title', 'text', blob)
+  }
+
+
   return (
     <div className="App">
       <div className='block'>
@@ -90,6 +116,9 @@ function App() {
           </div>
           <div onClick={() => { handleOnShare2() }}>
             <p>Share 2</p>
+          </div>
+          <div onClick={() => { handleOnShare3() }}>
+            <p>Share 3</p>
           </div>
         </div>
       </div>
