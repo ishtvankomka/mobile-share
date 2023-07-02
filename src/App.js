@@ -68,7 +68,7 @@ function App() {
       toPng(shareRef.current, { cacheBust: false })
         .then((dataUrl) => {
           console.log('share dataUrl: ', dataUrl)
-          setFile(urltoFile(dataUrl, 'test', 'image/png'))
+          setFile(dataURLtoFile(dataUrl, 'test'))
         })
   }, [shareRef])
 
