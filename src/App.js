@@ -34,11 +34,15 @@ function App() {
         console.log('share dataUrl: ', dataUrl)
         const files = [dataURLtoFile(dataUrl, 'test')]
         console.log('share files: ', files)
-        navigator.share({
-          files,
-          title: "Images",
-          text: "Beautiful images",
-        });
+        try {
+          navigator.share({
+            files,
+            title: "Images",
+            text: "Beautiful images",
+          });
+        } catch (err) {
+          alert(err)
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -60,15 +64,18 @@ function App() {
         console.log('share dataUrl: ', dataUrl)
         const files = [urltoFile(dataUrl, 'test', 'image/png')]
         console.log('share files: ', files)
-        navigator.share({
-          files,
-          title: "Images",
-          text: "Beautiful images",
-        });
+        try {
+          navigator.share({
+            files,
+            title: "Images",
+            text: "Beautiful images",
+          });
+        } catch (err) {
+          alert(err)
+        }
       })
       .catch((err) => {
         console.log(err);
-        alert(err)
       })
   }
 
