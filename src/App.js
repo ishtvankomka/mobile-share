@@ -183,15 +183,12 @@ function App() {
     });
 
     var blob = dataURItoBlob(url);
-    /*  const result_file = new File([blob], "file.png", {
-       type: "image/png",
-     }); */
-
-    const result_file = url.length ? dataURLtoFile(url, 'test') : null
+    const result_file = new File([blob], "file.png", {
+      type: "image/png",
+    });
 
     const handleClick = event => {
-    
-      share2('title', 'text', urlFile)
+      share2('title', 'text', result_file)
     };
 
 
