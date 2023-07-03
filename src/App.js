@@ -142,14 +142,25 @@ function App() {
 
     const handleClick = event => {
       if (navigator.share) {
-        const data = {
-          files: [file],
-          title: 'title',
-          text: 'text',
-        };
-        navigator.share(data).catch((err) => {
-          alert('EventListener; ', err)
-        });
+        toPng(shareRef.current, { cacheBust: false })
+          .then((dataUrl) => {
+            console.log('share dataUrl: ', dataUrl)
+            const files = [dataURLtoFile(dataUrl, 'test')]
+            console.log('share files: ', files)
+            try {
+              navigator.share({
+                files,
+                title: "Images",
+                text: "Beautiful images",
+              });
+            } catch (err) {
+              alert('EventListeneк ', err)
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            alert(err)
+          })
       } else {
         alert('EventListener navigator.share not found')
       }
