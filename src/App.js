@@ -172,16 +172,17 @@ function App() {
     });
 
     var blob = dataURItoBlob(url);
-    const result_file = new File([blob], "file.png", {
-      type: "image/png",
-    });
+    /*  const result_file = new File([blob], "file.png", {
+       type: "image/png",
+     }); */
 
+    const result_file = dataURLtoFile(url, 'test')
 
     const handleClick = event => {
       share2('title', 'text', result_file)
     };
 
-    
+
     element.addEventListener('click', handleClick);
 
     return () => {
