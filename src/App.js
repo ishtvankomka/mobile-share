@@ -58,6 +58,8 @@ function App() {
     );
   }
 
+  const [url, setUrl] = useState('')
+
   const [file, setFile] = useState(null)
   useEffect(() => {
     if (file)
@@ -67,6 +69,7 @@ function App() {
     if (shareRef)
       toPng(shareRef.current, { cacheBust: false })
         .then((dataUrl) => {
+          setUrl(dataUrl)
           console.log('share dataUrl: ', dataUrl)
           setFile(dataURLtoFile(dataUrl, 'test'))
         })
@@ -145,7 +148,7 @@ function App() {
     });
 
     const handleClick = event => {
-      share2('title', 'text', text)
+      share2('title', 'text', url)
     };
 
     element.addEventListener('click', handleClick);
