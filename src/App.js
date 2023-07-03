@@ -176,7 +176,7 @@ function App() {
        type: "image/png",
      }); */
 
-    const result_file = dataURLtoFile(url, 'test')
+    const result_file = url.length ? dataURLtoFile(url, 'test') : null
 
     const handleClick = event => {
       share2('title', 'text', result_file)
