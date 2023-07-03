@@ -59,7 +59,11 @@ function App() {
   }
 
   const [url, setUrl] = useState('')
-
+  const [urlFile, setUrlFile] = useState(null)
+  useEffect(() => {
+    if (urlFile)
+      console.log('urlFile: ', urlFile)
+  }, [urlFile])
   const [file, setFile] = useState(null)
   useEffect(() => {
     if (file)
@@ -69,6 +73,13 @@ function App() {
     if (shareRef)
       toPng(shareRef.current, { cacheBust: false })
         .then((dataUrl) => {
+          fetch(dataUrl)
+            .then(response => response.blob())
+            .then(blob => {
+              const file = new File([blob], "sample.png", { type: blob.type })
+              console.log(file)
+              setUrlFile(file)  //File object
+            })
           setUrl(dataUrl)
           console.log('share dataUrl: ', dataUrl)
           setFile(dataURLtoFile(dataUrl, 'test'))
@@ -179,7 +190,8 @@ function App() {
     const result_file = url.length ? dataURLtoFile(url, 'test') : null
 
     const handleClick = event => {
-      share2('title', 'text', result_file)
+    
+      share2('title', 'text', urlFile)
     };
 
 
