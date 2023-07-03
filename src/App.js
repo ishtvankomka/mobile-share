@@ -176,28 +176,32 @@ function App() {
   const ref = useRef(null);
 
   useEffect(() => {
-    const element = ref.current;
+    if (url) {
+      const element = ref.current;
 
-    const text = new File(["foo"], "foo.txt", {
-      type: "text/plain",
-    });
+      /* const text = new File(["foo"], "foo.txt", {
+        type: "text/plain",
+      }); */
 
-    var blob = dataURItoBlob(url);
-    const result_file = new File([blob], "file.png", {
-      type: "image/png",
-    });
+      const blob = dataURItoBlob(url);
+      const result_file = new File([blob], "file.png", {
+        type: "image/png",
+      });
 
-    const handleClick = event => {
-      share2('title', 'text', result_file)
-    };
+      console.log('result_file: ', result_file)
+
+      const handleClick = event => {
+        share2('title', 'text', result_file)
+      };
 
 
-    element.addEventListener('click', handleClick);
+      element.addEventListener('click', handleClick);
 
-    return () => {
-      element.removeEventListener('click', handleClick);
-    };
-  }, []);
+      return () => {
+        element.removeEventListener('click', handleClick);
+      };
+    }
+  }, [url]);
 
 
   return (
