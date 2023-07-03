@@ -146,15 +146,11 @@ function App() {
           console.log('share dataUrl: ', dataUrl)
           const files = [dataURLtoFile(dataUrl, 'test')]
           console.log('share files: ', files)
-          try {
-            navigator.share({
-              files,
-              title: "Images",
-              text: "Beautiful images",
-            });
-          } catch (err) {
-            alert('EventListeneк ', err)
-          }
+          navigator.share({
+            files,
+            title: "Images",
+            text: "Beautiful images",
+          });
         })
         .catch((err) => {
           console.log(err);
