@@ -140,8 +140,12 @@ function App() {
   useEffect(() => {
     const element = ref.current;
 
+    const text = new File(["foo"], "foo.txt", {
+      type: "text/plain",
+    });
+
     const handleClick = event => {
-      share2('title', 'text', file)
+      share2('title', 'text', text)
     };
 
     element.addEventListener('click', handleClick);
