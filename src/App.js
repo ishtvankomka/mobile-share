@@ -134,6 +134,33 @@ function App() {
     share2('title', 'text', file)
   }
 
+
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+
+    const handleClick = event => {
+      if (navigator.share) {
+        navigator.share({
+          title: 'WebShare API Demo',
+          url: 'https://codepen.io/simevidas/pen/XWzGgJz'
+        }).catch((err) => {
+          alert('EventListener; ', err)
+        });
+      } else {
+        alert('EventListener navigator.share not found')
+      }
+    };
+
+    element.addEventListener('click', handleClick);
+
+    return () => {
+      element.removeEventListener('click', handleClick);
+    };
+  }, []);
+
+
   return (
     <div className="App">
       <div className='block'>
@@ -164,10 +191,15 @@ function App() {
           <button onClick={() => { handleOnShare4() }}>
             <p>Share 5</p>
           </button>
+          <button ref={ref} type="button">
+            <p>Share 6</p>
+          </button>
         </div>
       </div>
     </div>
   );
+
+
 }
 
 export default App;
