@@ -181,6 +181,7 @@ function App() {
       share2('title', 'text', result_file)
     };
 
+    
     element.addEventListener('click', handleClick);
 
     return () => {
