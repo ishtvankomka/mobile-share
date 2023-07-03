@@ -141,29 +141,25 @@ function App() {
     const element = ref.current;
 
     const handleClick = event => {
-      if (navigator.share) {
-        toPng(shareRef.current, { cacheBust: false })
-          .then((dataUrl) => {
-            console.log('share dataUrl: ', dataUrl)
-            const files = [dataURLtoFile(dataUrl, 'test')]
-            console.log('share files: ', files)
-            try {
-              navigator.share({
-                files,
-                title: "Images",
-                text: "Beautiful images",
-              });
-            } catch (err) {
-              alert('EventListeneк ', err)
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-            alert(err)
-          })
-      } else {
-        alert('EventListener navigator.share not found')
-      }
+      toPng(shareRef.current, { cacheBust: false })
+        .then((dataUrl) => {
+          console.log('share dataUrl: ', dataUrl)
+          const files = [dataURLtoFile(dataUrl, 'test')]
+          console.log('share files: ', files)
+          try {
+            navigator.share({
+              files,
+              title: "Images",
+              text: "Beautiful images",
+            });
+          } catch (err) {
+            alert('EventListeneк ', err)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(err)
+        })
     };
 
     element.addEventListener('click', handleClick);
