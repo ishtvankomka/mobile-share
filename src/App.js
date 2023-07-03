@@ -141,7 +141,7 @@ function App() {
     const element = ref.current;
 
     const handleClick = event => {
-      share('title', 'text', blob)
+      share2('title', 'text', file)
     };
 
     element.addEventListener('click', handleClick);
