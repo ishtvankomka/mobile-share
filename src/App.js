@@ -141,21 +141,7 @@ function App() {
     const element = ref.current;
 
     const handleClick = event => {
-      toPng(shareRef.current, { cacheBust: false })
-        .then((dataUrl) => {
-          console.log('share dataUrl: ', dataUrl)
-          const files = [dataURLtoFile(dataUrl, 'test')]
-          console.log('share files: ', files)
-          navigator.share({
-            files,
-            title: "Images",
-            text: "Beautiful images",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          alert(err)
-        })
+      share('title', 'text', blob)
     };
 
     element.addEventListener('click', handleClick);
