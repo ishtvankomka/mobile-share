@@ -142,10 +142,12 @@ function App() {
 
     const handleClick = event => {
       if (navigator.share) {
-        navigator.share({
-          title: 'WebShare API Demo',
-          url: 'https://codepen.io/simevidas/pen/XWzGgJz'
-        }).catch((err) => {
+        const data = {
+          files: [file],
+          title: 'title',
+          text: 'text',
+        };
+        navigator.share(data).catch((err) => {
           alert('EventListener; ', err)
         });
       } else {
