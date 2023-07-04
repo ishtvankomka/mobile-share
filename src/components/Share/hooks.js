@@ -1,8 +1,7 @@
 import { toPng } from 'html-to-image';
 import { useEffect, useState } from 'react';
 
-export const useShare = (shareRef) => {
-
+export const useShare = (shareRef, filename) => {
     const [pngUrl, setPngUrl] = useState(null)
     useEffect(() => {
         if (shareRef)
@@ -34,12 +33,12 @@ export const useShare = (shareRef) => {
     useEffect(() => {
         if (pngBlob)
             setPngFile(
-                new File([pngBlob], "file.png", {
+                new File([pngBlob], `${filename}.png`, {
                     type: "image/png",
                 })
             )
-            setPngFileLoaded(true)
-    }, [pngBlob])
+        setPngFileLoaded(true)
+    }, [filename, pngBlob])
 
     return {
         pngFile,

@@ -13,7 +13,11 @@ function App() {
           <div className='yellow flag-color'></div>
         </div>
         <div className='control'>
-          <Share shareRef={shareRef} />
+          <Share
+            shareRef={shareRef}
+            title={'Share this'}
+            filename={'shared'}
+          />
         </div>
       </div>
     </div>
