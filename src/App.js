@@ -15,7 +15,6 @@ function App() {
         <div className='control'>
           <Share
             shareRef={shareRef}
-            title={'Share this'}
             filename={'shared'}
           />
         </div>

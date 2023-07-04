@@ -3,15 +3,14 @@ import './ShareStyles.scss';
 import { useShare } from './hooks';
 
 export function Share(props) {
-    const { shareRef, title, filename } = props
+    const { shareRef, filename } = props
 
     const { pngFile, pngFileLoaded } = useShare(shareRef, filename)
 
     const handleOnShare = async (event) => {
         if (pngFile && pngFileLoaded) {
             const data = {
-                files: [pngFile],
-                title: title
+                files: [pngFile]                
             };
             try {
                 await navigator.share(data);
