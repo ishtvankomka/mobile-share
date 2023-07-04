@@ -1,11 +1,11 @@
-import { React, useEffect, useRef, useState } from 'react';
+import { React, useRef } from 'react';
 import './App.scss';
-import { toPng } from 'html-to-image';
+import { Share } from './components/Share/Share';
 
 function App() {
   const shareRef = useRef(null)
 
-  const [pngUrl, setPngUrl] = useState(null)
+  /* const [pngUrl, setPngUrl] = useState(null)
   useEffect(() => {
     if (shareRef)
       toPng(shareRef.current, { cacheBust: false })
@@ -52,10 +52,9 @@ function App() {
         await navigator.share(data);
       } catch (err) {
         console.error(err.name, err.message);
-        alert(err)
       }
     }
-  }
+  } */
 
 
   return (
@@ -66,9 +65,7 @@ function App() {
           <div className='yellow flag-color'></div>
         </div>
         <div className='control'>
-          <button onClick={(e) => { handleOnShare(e) }}>
-            <p>Share</p>
-          </button>
+          <Share shareRef={shareRef} />
         </div>
       </div>
     </div>

@@ -29,27 +29,5 @@
   .control {
     @include flexbox(column, center, center);
     margin-top: 50px;
-
-    div {
-      @include flexbox(column, center, center);
-      border-radius: 15px;
-      background-color: $dimed;
-      margin: 15px;
-
-      p {
-        margin: 10px;
-      }
-    }
-
-    button {
-      @include flexbox(column, center, center);
-      border-radius: 15px;
-      background-color: $dimed;
-      margin: 15px;
-
-      p {
-        margin: 10px;
-      }
-    }
   }
 }
